@@ -19,11 +19,15 @@ public enum Turn {
         return BLACK;
     }
 
+    public boolean isEnd() {
+        return this == END;
+    }
+
     public Color getColor() {
-        if(this == END) {
+        if (this == END) {
             throw new IllegalStateException("이미 게임이 종료되었습니다.");
         }
-        if(this == BLACK) {
+        if (this == BLACK) {
             return Color.BLACK;
         }
         return Color.WHITE;

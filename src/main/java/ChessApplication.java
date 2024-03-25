@@ -33,6 +33,9 @@ public class ChessApplication {
             Board board = chessGame.startTurn(MovePositionDto.from(gameCommand));
             outputView.printBoard(board);
         }
+        if (chessGame.isEnd()) {
+            return;
+        }
         startTurn();
     }
 }
