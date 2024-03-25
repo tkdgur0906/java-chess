@@ -22,6 +22,10 @@ public abstract class Piece {
         return this instanceof Empty;
     }
 
+    public boolean isKing() {
+        return this instanceof King;
+    }
+
     public boolean hasNotColorOf(Color color) {
         return this.color != color;
     }
