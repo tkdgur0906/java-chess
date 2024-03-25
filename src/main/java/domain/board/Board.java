@@ -24,7 +24,7 @@ public class Board {
         Piece piece = board.get(source);
         validate(source, target, turn);
         board.remove(source);
-        board.put(source, new Empty(Color.EMPTY));
+        board.put(source, new Empty());
         board.put(target, piece);
         return new Board(board);
     }

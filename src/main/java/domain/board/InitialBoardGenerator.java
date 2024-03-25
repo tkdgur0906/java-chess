@@ -66,7 +66,7 @@ public class InitialBoardGenerator implements BoardGenerator {
 
     private void placeEmptyToOneRank(Map<Position, Piece> board, int rank) {
         for (int file = 1; file <= 8; file++) {
-            board.put(Position.of(file, rank), new Empty(Color.EMPTY));
+            board.put(Position.of(file, rank), new Empty());
         }
     }
 }

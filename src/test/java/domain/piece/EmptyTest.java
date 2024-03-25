@@ -16,7 +16,7 @@ class EmptyTest {
     @MethodSource("canMoveDirection")
     @DisplayName("빈 칸은 어느 방향으로도 이동 불가")
     void canMove(Position source, Position target) {
-        Empty empty = new Empty(Color.EMPTY);
+        Empty empty = new Empty();
         assertThat(empty.canMove(source, target)).isFalse();
     }
 

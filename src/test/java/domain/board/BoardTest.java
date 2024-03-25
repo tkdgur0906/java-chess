@@ -56,7 +56,7 @@ class BoardTest {
         Position source = Position.of(2, 1);
         Position target = Position.of(3, 3);
         Knight knight = new Knight(Color.WHITE);
-        Empty empty = new Empty(Color.EMPTY);
+        Empty empty = new Empty();
         Board board = Board.generatedBy(() -> new HashMap<>(
                 Map.of(
                         source, knight,
@@ -77,7 +77,7 @@ class BoardTest {
         Position source = Position.of(2, 2);
         Position target = Position.of(1, 3);
         King king = new King(Color.WHITE);
-        Empty empty = new Empty(Color.EMPTY);
+        Empty empty = new Empty();
         Board board = Board.generatedBy(() -> new HashMap<>(
                 Map.of(
                         source, king,
@@ -98,7 +98,7 @@ class BoardTest {
         Position source = Position.of(2, 1);
         Position target = Position.of(3, 4);
         Knight knight = new Knight(Color.WHITE);
-        Empty empty = new Empty(Color.EMPTY);
+        Empty empty = new Empty();
         Board board = Board.generatedBy(() -> new HashMap<>(
                 Map.of(
                         source, knight,
@@ -120,7 +120,7 @@ class BoardTest {
 
         Rook rook = new Rook(Color.WHITE);
         Pawn pawn = new Pawn(Color.WHITE);
-        Empty empty = new Empty(Color.EMPTY);
+        Empty empty = new Empty();
 
         Board board = Board.generatedBy(() -> new HashMap<>(
                 Map.of(
@@ -144,7 +144,7 @@ class BoardTest {
 
         Bishop bishop = new Bishop(Color.WHITE);
         Pawn pawn = new Pawn(Color.WHITE);
-        Empty empty = new Empty(Color.EMPTY);
+        Empty empty = new Empty();
 
         Board board = Board.generatedBy(() -> new HashMap<>(
                 Map.of(
@@ -168,7 +168,7 @@ class BoardTest {
 
         Queen queen = new Queen(Color.WHITE);
         Pawn pawn = new Pawn(Color.WHITE);
-        Empty empty = new Empty(Color.EMPTY);
+        Empty empty = new Empty();
 
         Board board = Board.generatedBy(() -> new HashMap<>(
                 Map.of(
@@ -192,7 +192,7 @@ class BoardTest {
 
         Pawn pawn = new Pawn(Color.WHITE);
         Queen queen = new Queen(Color.WHITE);
-        Empty empty = new Empty(Color.EMPTY);
+        Empty empty = new Empty();
 
         Board board = Board.generatedBy(() -> new HashMap<>(
                 Map.of(
@@ -259,7 +259,7 @@ class BoardTest {
         Position target = Position.of(3, 3);
 
         Pawn pawn = new Pawn(Color.WHITE);
-        Empty empty = new Empty(Color.EMPTY);
+        Empty empty = new Empty();
 
         Board board = Board.generatedBy(() -> new HashMap<>(
                 Map.of(

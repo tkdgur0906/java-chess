@@ -4,8 +4,8 @@ import domain.board.Position;
 
 public class Empty extends Piece {
 
-    public Empty(Color color) {
-        super(color);
+    public Empty() {
+        super(Color.EMPTY);
     }
 
     @Override
