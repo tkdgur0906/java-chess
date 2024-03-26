@@ -1,6 +1,7 @@
 package view.dto;
 
 import domain.board.Position;
+import view.Command;
 
 public class MovePositionDto {
 
@@ -12,14 +13,8 @@ public class MovePositionDto {
         this.target = target;
     }
 
-    public static MovePositionDto from(String command) {
-        String[] splitCommand = command.split(" ");
-        if (splitCommand.length != 3) {
-            throw new IllegalArgumentException("형식에 맞는 입력을 해주세요 ex) move b2 b3");
-        }
-        String sourceText = splitCommand[1];
-        String targetText = splitCommand[2];
-        return new MovePositionDto(resolvePosition(sourceText), resolvePosition(targetText));
+    public static MovePositionDto from(Command command) {
+        return new MovePositionDto(resolvePosition(command.resolveSourceToText()), resolvePosition(command.resolveTargetToText()));
     }
 
     private static Position resolvePosition(String positionText) {

@@ -5,5 +5,4 @@ public enum WinStatus {
     BLACK,
     WHITE,
     DRAW
-    ;
 }
