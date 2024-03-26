@@ -33,6 +33,16 @@ public class ChessGame {
         return board.calculateBlackScore();
     }
 
+    public WinStatus findWinner() {
+        if (calculateBlackScore() > calculateWhiteScore()) {
+            return WinStatus.BLACK;
+        }
+        if (calculateBlackScore() < calculateWhiteScore()) {
+            return WinStatus.WHITE;
+        }
+        return WinStatus.DRAW;
+    }
+
     public boolean isEnd() {
         return turn.isEnd();
     }
