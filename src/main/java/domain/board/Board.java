@@ -11,6 +11,8 @@ import java.util.Map;
 public class Board {
 
     private static final double PAWN_PENALTY = 0.5;
+    private static final int MIN_RANK = 1;
+    private static final int MAX_RANK = 8;
 
     private final Map<Position, Piece> board;
 
@@ -171,7 +173,7 @@ public class Board {
 
     private double calculateWhitePawnPenaltyScoreByFile(int file) {
         int pawnCount = 0;
-        for (int rank = 1; rank <= 8; rank++) {
+        for (int rank = MIN_RANK; rank <= MAX_RANK; rank++) {
             Piece piece = board.get(Position.of(file, rank));
             pawnCount = increasePawnCountIfIsWhitePawn(piece, pawnCount);
         }
@@ -210,7 +212,7 @@ public class Board {
 
     private double calculateBlackPawnPenaltyScoreByFile(int file) {
         int pawnCount = 0;
-        for (int rank = 1; rank <= 8; rank++) {
+        for (int rank = MIN_RANK; rank <= MAX_RANK; rank++) {
             Piece piece = board.get(Position.of(file, rank));
             pawnCount = increasePawnCountIfIsBlackPawn(piece, pawnCount);
         }
