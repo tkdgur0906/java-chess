@@ -272,4 +272,20 @@ class BoardTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("대각선 방향에 상대방 말이 없으면 움직일 수 없습니다.");
     }
+
+    @Test
+    @DisplayName("모든 흰색 말의 점수를 계산")
+    void calculateWhiteScore() {
+        Board board = Board.generatedBy(new InitialBoardGenerator());
+
+        assertThat(board.calculateWhiteScore()).isEqualTo(38);
+    }
+
+    @Test
+    @DisplayName("모든 검정 말의 점수를 계산")
+    void calculateBlackScore() {
+        Board board = Board.generatedBy(new InitialBoardGenerator());
+
+        assertThat(board.calculateBlackScore()).isEqualTo(38);
+    }
 }

@@ -146,4 +146,20 @@ public class Board {
     public Piece findPieceAt(Position position) {
         return board.get(position);
     }
+
+    public double calculateWhiteScore() {
+        return board.values()
+                .stream()
+                .filter(Piece::isWhite)
+                .mapToDouble(Score::valueByPiece)
+                .sum();
+    }
+
+    public double calculateBlackScore() {
+        return board.values()
+                .stream()
+                .filter(Piece::isBlack)
+                .mapToDouble(Score::valueByPiece)
+                .sum();
+    }
 }

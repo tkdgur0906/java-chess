@@ -18,6 +18,10 @@ public abstract class Piece {
         return color == Color.WHITE;
     }
 
+    public boolean isBlack() {
+        return color == Color.BLACK;
+    }
+
     public boolean isEmpty() {
         return this instanceof Empty;
     }

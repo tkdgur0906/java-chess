@@ -25,6 +25,14 @@ public class ChessGame {
         return movedBoard;
     }
 
+    public double calculateWhiteScore() {
+        return board.calculateWhiteScore();
+    }
+
+    public double calculateBlackScore() {
+        return board.calculateBlackScore();
+    }
+
     public boolean isEnd() {
         return turn.isEnd();
     }
