@@ -10,6 +10,7 @@ public class ChessApplication {
     private static final String START_COMMAND = "start";
     private static final String END_COMMAND = "end";
     private static final String MOVE_COMMAND = "move";
+    private static final String STATUS_COMMAND = "status";
 
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
@@ -28,6 +29,10 @@ public class ChessApplication {
         String gameCommand = inputView.readCommand();
         if (END_COMMAND.equals(gameCommand)) {
             return;
+        }
+        if (STATUS_COMMAND.equals(gameCommand)) {
+            outputView.printScore(chessGame.calculateBlackScore(), chessGame.calculateWhiteScore());
+            outputView.printWinner(chessGame.findWinner());
         }
         if (gameCommand.startsWith(MOVE_COMMAND)) {
             Board board = chessGame.startTurn(MovePositionDto.from(gameCommand));

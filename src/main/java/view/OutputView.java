@@ -2,6 +2,7 @@ package view;
 
 import domain.board.Board;
 import domain.board.Position;
+import domain.game.WinStatus;
 import domain.piece.Piece;
 
 public class OutputView {
@@ -38,5 +39,22 @@ public class OutputView {
             return piece.asString().toLowerCase();
         }
         return piece.asString();
+    }
+
+    public void printScore(double blackScore, double whiteScore) {
+        System.out.println("> 검은색 점수 : " + blackScore + NEW_LINE +
+                "> 흰색 점수 : " + whiteScore + NEW_LINE);
+    }
+
+    public void printWinner(WinStatus winStatus) {
+        if (winStatus == WinStatus.BLACK) {
+            System.out.println("검은색이 승리했습니다!");
+            return;
+        }
+        if (winStatus == WinStatus.WHITE) {
+            System.out.println("흰색이 승리했습니다!");
+            return;
+        }
+        System.out.println("검은색과 흰색이 동점입니다.");
     }
 }
