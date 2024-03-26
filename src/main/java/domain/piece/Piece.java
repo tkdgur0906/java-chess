@@ -30,6 +30,10 @@ public abstract class Piece {
         return this instanceof King;
     }
 
+    public boolean isPawn() {
+        return this instanceof Pawn;
+    }
+
     public boolean hasNotColorOf(Color color) {
         return this.color != color;
     }
