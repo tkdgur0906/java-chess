@@ -1,8 +1,11 @@
 package domain.game;
 
 import domain.board.Board;
+import domain.board.Position;
 import domain.piece.Piece;
-import view.dto.MovePositionDto;
+
+import static domain.game.Turn.PRE_START;
+import static domain.game.Turn.makeInitialTurn;
 
 public class ChessGame {
 
@@ -14,10 +17,10 @@ public class ChessGame {
         this.turn = Turn.makeInitialTurn();
     }
 
-    public Board startTurn(MovePositionDto movePositionDto) {
-        Piece target = board.findPieceAt(movePositionDto.target());
-        Board movedBoard = board.move(movePositionDto.source(), movePositionDto.target(), turn);
-        if (target.isKing()) {
+    public Board startTurn(Position source, Position target) {
+        Piece piece = board.findPieceAt(target);
+        Board movedBoard = board.move(source, target, turn);
+        if (piece.isKing()) {
             turn = turn.end();
             return movedBoard;
         }

@@ -7,8 +7,6 @@ import domain.piece.King;
 import domain.piece.Rook;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import view.Command;
-import view.dto.MovePositionDto;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,7 +29,7 @@ class ChessGameTest {
                 )
         ));
         ChessGame chessGame = new ChessGame(board);
-        chessGame.startTurn(MovePositionDto.from(new Command("move d4 d5")));
+        chessGame.startTurn(source, target);
 
         assertThat(chessGame.isEnd()).isTrue();
     }
