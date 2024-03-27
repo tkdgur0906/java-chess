@@ -6,6 +6,7 @@ public enum Turn {
 
     BLACK,
     WHITE,
+    PRE_START,
     END;
 
     public static Turn makeInitialTurn() {
