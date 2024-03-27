@@ -1,10 +1,10 @@
 import domain.board.Board;
 import domain.board.InitialBoardGenerator;
 import domain.game.ChessGame;
-import view.Command;
+import domain.game.command.Command;
+import domain.game.command.Status;
 import view.InputView;
 import view.OutputView;
-import view.dto.MovePositionDto;
 
 public class ChessApplication {
 
@@ -14,29 +14,18 @@ public class ChessApplication {
 
     public static void main(String[] args) {
         outputView.printStartMessage();
-        Command command = inputView.readCommand();
-        if (command.isStart()) {
+        while (!chessGame.isEnd()) {
+            Command command = inputView.readCommand();
+            command.process(chessGame);
+            handleStatusCommand(command);
             outputView.printBoard(chessGame.getBoard());
-            startTurn();
         }
     }
 
-    private static void startTurn() {
-        Command gameCommand = inputView.readCommand();
-        if (gameCommand.isEnd()) {
-            return;
-        }
-        if (gameCommand.isStatus()) {
+    private static void handleStatusCommand(Command command) {
+        if (command.getClass() == Status.class) {
             outputView.printScore(chessGame.calculateBlackScore(), chessGame.calculateWhiteScore());
             outputView.printWinner(chessGame.findWinner());
         }
-        if (gameCommand.isMove()) {
-            Board board = chessGame.startTurn(MovePositionDto.from(gameCommand));
-            outputView.printBoard(board);
-        }
-        if (chessGame.isEnd()) {
-            return;
-        }
-        startTurn();
     }
 }

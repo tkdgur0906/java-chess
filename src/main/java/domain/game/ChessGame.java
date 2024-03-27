@@ -14,7 +14,7 @@ public class ChessGame {
 
     public ChessGame(Board board) {
         this.board = board;
-        this.turn = Turn.makeInitialTurn();
+        this.turn = PRE_START;
     }
 
     public Board startTurn(Position source, Position target) {
@@ -26,6 +26,17 @@ public class ChessGame {
         }
         turn = turn.changeTurn();
         return movedBoard;
+    }
+
+    public void start() {
+        if (turn != PRE_START) {
+            throw new IllegalStateException("게임을 종료하고 다시 시작해주세요");
+        }
+        turn = makeInitialTurn();
+    }
+
+    public void end() {
+        turn = turn.end();
     }
 
     public double calculateWhiteScore() {
