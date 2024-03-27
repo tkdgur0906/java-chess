@@ -20,6 +20,8 @@ public class ChessApplication {
             handleStatusCommand(command);
             outputView.printBoard(chessGame.getBoard());
         }
+        outputView.printScore(chessGame.calculateBlackScore(), chessGame.calculateWhiteScore());
+        outputView.printWinner(chessGame.findWinner());
     }
 
     private static void handleStatusCommand(Command command) {

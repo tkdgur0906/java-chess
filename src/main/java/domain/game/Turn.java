@@ -6,6 +6,8 @@ public enum Turn {
 
     BLACK,
     WHITE,
+    BLACK_KING_CAPTURED_END,
+    WHITE_KING_CAPTURED_END,
     PRE_START,
     END;
 
@@ -21,7 +23,7 @@ public enum Turn {
     }
 
     public boolean isEnd() {
-        return this == END;
+        return this == END || this == BLACK_KING_CAPTURED_END || this == WHITE_KING_CAPTURED_END;
     }
 
     public Color getColor() {
@@ -36,5 +38,13 @@ public enum Turn {
 
     public Turn end() {
         return END;
+    }
+
+    public Turn blackKingCaptured() {
+        return BLACK_KING_CAPTURED_END;
+    }
+
+    public Turn whiteKingCaptured() {
+        return WHITE_KING_CAPTURED_END;
     }
 }

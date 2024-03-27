@@ -4,8 +4,7 @@ import domain.board.Board;
 import domain.board.Position;
 import domain.piece.Piece;
 
-import static domain.game.Turn.PRE_START;
-import static domain.game.Turn.makeInitialTurn;
+import static domain.game.Turn.*;
 
 public class ChessGame {
 
@@ -20,12 +19,20 @@ public class ChessGame {
     public Board startTurn(Position source, Position target) {
         Piece piece = board.findPieceAt(target);
         Board movedBoard = board.move(source, target, turn);
-        if (piece.isKing()) {
-            turn = turn.end();
-            return movedBoard;
+        changeTurn(piece);
+        return movedBoard;
+    }
+
+    private void changeTurn(Piece piece) {
+        if (piece.isKing() && piece.isBlack()) {
+            turn = turn.blackKingCaptured();
+            return;
+        }
+        if (piece.isKing() && piece.isWhite()) {
+            turn = turn.whiteKingCaptured();
+            return;
         }
         turn = turn.changeTurn();
-        return movedBoard;
     }
 
     public void start() {
@@ -48,13 +55,21 @@ public class ChessGame {
     }
 
     public WinStatus findWinner() {
-        if (calculateBlackScore() > calculateWhiteScore()) {
+        if (isBlackWin()) {
             return WinStatus.BLACK;
         }
-        if (calculateBlackScore() < calculateWhiteScore()) {
+        if (isWhiteWin()) {
             return WinStatus.WHITE;
         }
         return WinStatus.DRAW;
+    }
+
+    private boolean isBlackWin() {
+        return turn == WHITE_KING_CAPTURED_END || calculateBlackScore() > calculateWhiteScore();
+    }
+
+    private boolean isWhiteWin() {
+        return turn == BLACK_KING_CAPTURED_END || calculateBlackScore() < calculateWhiteScore();
     }
 
     public boolean isEnd() {
