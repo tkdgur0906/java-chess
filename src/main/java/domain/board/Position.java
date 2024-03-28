@@ -50,6 +50,14 @@ public class Position {
         return rank.equals(target.rank);
     }
 
+    public int file() {
+        return file.value();
+    }
+
+    public int rank() {
+        return file.value();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

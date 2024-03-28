@@ -24,6 +24,10 @@ public class Board {
         return new Board(boardGenerator.generate());
     }
 
+    public static Board replaceBoardWith(Map<Position, Piece> board) {
+        return new Board(board);
+    }
+
     public Board move(Position source, Position target, Turn turn) {
         Piece piece = board.get(source);
         validate(source, target, turn);
