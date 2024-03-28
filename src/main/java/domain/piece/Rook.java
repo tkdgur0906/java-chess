@@ -16,6 +16,6 @@ public class Rook extends Piece {
 
     @Override
     public String asString() {
-        return "R";
+        return pieceToString("R");
     }
 }

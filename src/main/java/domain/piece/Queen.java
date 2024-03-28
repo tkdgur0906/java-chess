@@ -17,6 +17,6 @@ public class Queen extends Piece {
 
     @Override
     public String asString() {
-        return "Q";
+        return pieceToString("Q");
     }
 }

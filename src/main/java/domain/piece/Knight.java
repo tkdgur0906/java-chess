@@ -19,6 +19,6 @@ public class Knight extends Piece {
 
     @Override
     public String asString() {
-        return "N";
+        return pieceToString("N");
     }
 }

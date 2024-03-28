@@ -10,6 +10,13 @@ public abstract class Piece {
         this.color = color;
     }
 
+    protected String pieceToString(String piece) {
+        if (isWhite()) {
+            return piece.toLowerCase();
+        }
+        return piece;
+    }
+
     public abstract boolean canMove(Position source, Position target);
 
     public abstract String asString();

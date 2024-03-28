@@ -29,16 +29,9 @@ public class OutputView {
     private void printOneRank(Board board, int rank) {
         for (int file = 1; file <= 8; file++) {
             Piece piece = board.findPieceAt(Position.of(file, rank));
-            System.out.print(pieceToString(piece));
+            System.out.print(piece.asString());
         }
         System.out.println();
-    }
-
-    private String pieceToString(Piece piece) {
-        if (piece.isWhite()) {
-            return piece.asString().toLowerCase();
-        }
-        return piece.asString();
     }
 
     public void printScore(double blackScore, double whiteScore) {

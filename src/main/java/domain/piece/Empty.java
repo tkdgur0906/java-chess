@@ -15,6 +15,6 @@ public class Empty extends Piece {
 
     @Override
     public String asString() {
-        return ".";
+        return pieceToString(".");
     }
 }

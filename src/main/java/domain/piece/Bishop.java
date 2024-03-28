@@ -15,6 +15,6 @@ public class Bishop extends Piece {
 
     @Override
     public String asString() {
-        return "B";
+        return pieceToString("B");
     }
 }

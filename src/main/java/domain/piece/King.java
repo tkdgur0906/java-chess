@@ -17,6 +17,6 @@ public class King extends Piece {
 
     @Override
     public String asString() {
-        return "K";
+        return pieceToString("K");
     }
 }
