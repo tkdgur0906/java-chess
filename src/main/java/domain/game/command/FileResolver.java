@@ -1,4 +1,4 @@
-package view.dto;
+package domain.game.command;
 
 import java.util.Arrays;
 

@@ -2,7 +2,6 @@ package domain.game.command;
 
 import domain.board.Position;
 import domain.game.ChessGame;
-import view.dto.FileResolver;
 
 import java.util.Arrays;
 import java.util.List;
