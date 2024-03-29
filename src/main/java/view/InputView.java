@@ -11,7 +11,12 @@ public class InputView {
     private final Scanner scanner = new Scanner(System.in);
 
     public Command readCommand() {
-        return CommandMapper.mapToCommand(scanner.nextLine());
+        try {
+            return CommandMapper.mapToCommand(scanner.nextLine());
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            return readCommand();
+        }
     }
 
     enum CommandMapper {

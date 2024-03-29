@@ -17,13 +17,21 @@ public class ChessApplication {
     public static void main(String[] args) {
         outputView.printStartMessage();
         while (!chessGame.isEnd()) {
+            processCommand();
+        }
+        outputView.printScore(chessGame.calculateBlackScore(), chessGame.calculateWhiteScore());
+        outputView.printWinner(chessGame.findWinner());
+    }
+
+    private static void processCommand() {
+        try {
             Command command = inputView.readCommand();
             command.process(chessGame);
             handleCommands(command);
             outputView.printBoard(chessGame.getBoard());
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
         }
-        outputView.printScore(chessGame.calculateBlackScore(), chessGame.calculateWhiteScore());
-        outputView.printWinner(chessGame.findWinner());
     }
 
     private static void handleCommands(Command command) {
