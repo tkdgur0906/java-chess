@@ -55,7 +55,7 @@ public class Position {
     }
 
     public int rank() {
-        return file.value();
+        return rank.value();
     }
 
     @Override
