@@ -10,7 +10,7 @@ import static domain.game.Turn.*;
 
 public class ChessGame {
 
-    private final Board board;
+    private Board board;
     private Turn turn;
 
     public ChessGame(Board board) {
@@ -59,6 +59,21 @@ public class ChessGame {
         BoardDao boardDao = new BoardDao();
         boardDao.removeAll();
         boardDao.saveBoard(board);
+    }
+
+    public void load() {
+        loadBoard();
+        loadTurn();
+    }
+
+    private void loadTurn() {
+        TurnDao turnDao = new TurnDao();
+        turn = turnDao.findTurn();
+    }
+
+    private void loadBoard() {
+        BoardDao boardDao = new BoardDao();
+        board = boardDao.findAll();
     }
 
     public void end() {
