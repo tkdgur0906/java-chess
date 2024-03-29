@@ -50,4 +50,8 @@ public class OutputView {
         }
         System.out.println("검은색과 흰색이 동점입니다.");
     }
+
+    public void printSaveMessage() {
+        System.out.println("게임이 저장되었습니다.");
+    }
 }

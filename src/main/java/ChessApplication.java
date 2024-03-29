@@ -2,6 +2,7 @@ import domain.board.Board;
 import domain.board.InitialBoardGenerator;
 import domain.game.ChessGame;
 import domain.game.command.Command;
+import domain.game.command.Save;
 import domain.game.command.Status;
 import view.InputView;
 import view.OutputView;
@@ -18,6 +19,7 @@ public class ChessApplication {
             Command command = inputView.readCommand();
             command.process(chessGame);
             handleStatusCommand(command);
+            handleSaveCommand(command);
             outputView.printBoard(chessGame.getBoard());
         }
         outputView.printScore(chessGame.calculateBlackScore(), chessGame.calculateWhiteScore());
@@ -28,6 +30,12 @@ public class ChessApplication {
         if (command.getClass() == Status.class) {
             outputView.printScore(chessGame.calculateBlackScore(), chessGame.calculateWhiteScore());
             outputView.printWinner(chessGame.findWinner());
+        }
+    }
+
+    private static void handleSaveCommand(Command command) {
+        if(command.getClass() == Save.class) {
+            outputView.printSaveMessage();
         }
     }
 }
