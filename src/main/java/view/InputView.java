@@ -19,8 +19,8 @@ public class InputView {
         MOVE(Move::from, "move"),
         STATUS(Status::from, "status"),
         END(End::from, "end"),
-        SAVE(Save::from, "save")
-        ;
+        SAVE(Save::from, "save"),
+        LOAD(Load::from, "load");
 
         private final Function<String, ? extends Command> commandFunction;
         private final String commandText;
