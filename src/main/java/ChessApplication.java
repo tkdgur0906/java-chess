@@ -19,13 +19,17 @@ public class ChessApplication {
         while (!chessGame.isEnd()) {
             Command command = inputView.readCommand();
             command.process(chessGame);
-            handleStatusCommand(command);
-            handleSaveCommand(command);
-            handLoadCommand(command);
+            handleCommands(command);
             outputView.printBoard(chessGame.getBoard());
         }
         outputView.printScore(chessGame.calculateBlackScore(), chessGame.calculateWhiteScore());
         outputView.printWinner(chessGame.findWinner());
+    }
+
+    private static void handleCommands(Command command) {
+        handleStatusCommand(command);
+        handleSaveCommand(command);
+        handLoadCommand(command);
     }
 
     private static void handleStatusCommand(Command command) {
