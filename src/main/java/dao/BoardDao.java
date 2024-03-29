@@ -15,6 +15,10 @@ public class BoardDao {
     private static final String OPTION = "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "root";
+    private static final int MIN_FILE = 1;
+    private static final int MAX_FILE = 8;
+    private static final int MIN_RANK = 1;
+    private static final int MAX_RANK = 8;
 
     public Connection getConnection() {
         try {
@@ -26,11 +30,24 @@ public class BoardDao {
         }
     }
 
-    public void savePiece(Piece piece, Position position) {
+    public void saveBoard(Board board) {
+        for (int file = MIN_FILE; file <= MAX_FILE; file++) {
+            savePiecesByFile(board, file);
+        }
+    }
+
+    private void savePiecesByFile(Board board, int file) {
+        for (int rank = MIN_RANK; rank <= MAX_RANK; rank++) {
+            Position position = Position.of(file, rank);
+            Piece piece = board.findPieceAt(position);
+            savePiece(piece, position);
+        }
+    }
+
+    private void savePiece(Piece piece, Position position) {
         try (Connection connection = getConnection()) {
             String query = "insert into pieces values(?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-
             preparedStatement.setString(1, piece.asString());
             preparedStatement.setInt(2, position.file());
             preparedStatement.setInt(3, position.rank());
@@ -47,10 +64,7 @@ public class BoardDao {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                board.put(
-                        Position.of(resultSet.getInt("board_file"), resultSet.getInt("board_rank")),
-                        PieceMapper.textToPiece(resultSet.getString("piece"))
-                );
+                board.put(Position.of(resultSet.getInt("board_file"), resultSet.getInt("board_rank")), PieceMapper.textToPiece(resultSet.getString("piece")));
             }
             return Board.replaceBoardWith(board);
         } catch (SQLException e) {
