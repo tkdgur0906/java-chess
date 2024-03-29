@@ -71,4 +71,14 @@ public class BoardDao {
             throw new RuntimeException(e);
         }
     }
+
+    public void removeAll() {
+        try (Connection connection = getConnection()) {
+            String query = "delete from pieces";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
