@@ -1,5 +1,7 @@
 package domain.game;
 
+import dao.BoardDao;
+import dao.TurnDao;
 import domain.board.Board;
 import domain.board.Position;
 import domain.piece.Piece;
@@ -40,6 +42,23 @@ public class ChessGame {
             throw new IllegalStateException("게임을 종료하고 다시 시작해주세요");
         }
         turn = makeInitialTurn();
+    }
+
+    public void save() {
+        saveBoard();
+        saveTurn();
+    }
+
+    private void saveTurn() {
+        TurnDao turnDao = new TurnDao();
+        turnDao.removeAll();
+        turnDao.saveTurn(turn);
+    }
+
+    private void saveBoard() {
+        BoardDao boardDao = new BoardDao();
+        boardDao.removeAll();
+        boardDao.saveBoard(board);
     }
 
     public void end() {
