@@ -20,7 +20,7 @@ public class TurnDao {
         try {
             return DriverManager.getConnection("jdbc:mysql://" + SERVER + "/" + DATABASE + OPTION, USERNAME, PASSWORD);
         } catch (SQLException e) {
-            throw new RuntimeException("DB 연결 오류:" + e.getMessage());
+            throw new RuntimeException("데이터베이스의 커넥션을 반환하지 못하였습니다.");
         }
     }
 
@@ -31,7 +31,7 @@ public class TurnDao {
             preparedStatement.setString(1, turn.getColor().name());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("턴을 저장하지 못하였습니다.");
         }
     }
 
@@ -44,7 +44,7 @@ public class TurnDao {
                 return TurnMapper.textToTurn(resultSet.getString("current_turn"));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("저장된 턴을 찾지 못하였습니다.");
         }
         return null;
     }
@@ -55,7 +55,7 @@ public class TurnDao {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("저장된 턴을 삭제하지 못하였습니다.");
         }
     }
 }
