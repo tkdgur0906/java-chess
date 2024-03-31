@@ -48,16 +48,16 @@ public class ChessGame {
         saveTurn();
     }
 
-    private void saveTurn() {
-        TurnDao turnDao = new TurnDao();
-        turnDao.removeAll();
-        turnDao.saveTurn(turn);
-    }
-
     private void saveBoard() {
         BoardDao boardDao = new BoardDao();
         boardDao.removeAll();
         boardDao.saveBoard(board);
+    }
+
+    private void saveTurn() {
+        TurnDao turnDao = new TurnDao();
+        turnDao.removeAll();
+        turnDao.saveTurn(turn);
     }
 
     public void load() {
@@ -65,14 +65,14 @@ public class ChessGame {
         loadTurn();
     }
 
-    private void loadTurn() {
-        TurnDao turnDao = new TurnDao();
-        turn = turnDao.findTurn();
-    }
-
     private void loadBoard() {
         BoardDao boardDao = new BoardDao();
         board = boardDao.findAll();
+    }
+
+    private void loadTurn() {
+        TurnDao turnDao = new TurnDao();
+        turn = turnDao.findTurn();
     }
 
     public void end() {
