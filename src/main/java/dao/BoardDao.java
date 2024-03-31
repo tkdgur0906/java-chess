@@ -66,7 +66,14 @@ public class BoardDao {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                board.put(Position.of(resultSet.getInt("board_file"), resultSet.getInt("board_rank")), PieceMapper.textToPiece(resultSet.getString("piece")));
+                board.put(
+                        Position.of(
+                                resultSet.getInt("board_file"),
+                                resultSet.getInt("board_rank")),
+                        PieceMapper.textToPiece(
+                                resultSet.getString("piece")
+                        )
+                );
             }
             return Board.replaceBoardWith(board);
         } catch (SQLException e) {
