@@ -8,6 +8,8 @@ import domain.piece.Piece;
 import domain.piece.Queen;
 import domain.piece.Rook;
 
+import java.util.Arrays;
+
 public enum Score {
 
     KING(King.class, 0),
@@ -26,11 +28,10 @@ public enum Score {
     }
 
     public static double valueByPiece(Piece piece) {
-        for (Score score : values()) {
-            if (score.type == piece.getClass()) {
-                return score.value;
-            }
-        }
-        return 0;
+        return Arrays.stream(values())
+                .filter(score -> score.type == piece.getClass())
+                .map(score -> score.value)
+                .findFirst()
+                .orElse(0.0);
     }
 }
