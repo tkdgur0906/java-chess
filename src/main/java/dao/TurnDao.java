@@ -27,7 +27,7 @@ public class TurnDao {
     public void saveTurn(Turn turn) {
         String query = "insert into turn values(?)";
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query);
+             PreparedStatement preparedStatement = connection.prepareStatement(query)
         ) {
             preparedStatement.setString(1, turn.getColor().name());
             preparedStatement.executeUpdate();
@@ -55,7 +55,7 @@ public class TurnDao {
     public void removeAll() {
         String query = "delete from turn";
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query);
+             PreparedStatement preparedStatement = connection.prepareStatement(query)
         ) {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

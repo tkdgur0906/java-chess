@@ -86,7 +86,7 @@ public class BoardDao {
     public void removeAll() {
         String query = "delete from pieces";
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query);
+             PreparedStatement preparedStatement = connection.prepareStatement(query)
         ) {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
