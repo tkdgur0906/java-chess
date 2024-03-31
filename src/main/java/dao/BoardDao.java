@@ -47,9 +47,10 @@ public class BoardDao {
     }
 
     private void savePiece(Piece piece, Position position) {
-        try (Connection connection = getConnection()) {
-            String query = "insert into pieces values(?,?,?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+        String query = "insert into pieces values(?,?,?)";
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)
+        ) {
             preparedStatement.setString(1, piece.asString());
             preparedStatement.setInt(2, position.file());
             preparedStatement.setInt(3, position.rank());
@@ -60,10 +61,11 @@ public class BoardDao {
     }
 
     public Board findAll() {
-        try (Connection connection = getConnection()) {
-            Map<Position, Piece> board = new HashMap<>();
-            String query = "select * from pieces order by board_file and board_rank";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+        Map<Position, Piece> board = new HashMap<>();
+        String query = "select * from pieces order by board_file and board_rank";
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)
+        ) {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 board.put(
@@ -82,9 +84,10 @@ public class BoardDao {
     }
 
     public void removeAll() {
-        try (Connection connection = getConnection()) {
-            String query = "delete from pieces";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+        String query = "delete from pieces";
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ) {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("저장된 게임을 삭제하지 못하였습니다.");

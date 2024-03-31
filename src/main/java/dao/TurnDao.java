@@ -25,9 +25,10 @@ public class TurnDao {
     }
 
     public void saveTurn(Turn turn) {
-        try (Connection connection = getConnection()) {
-            String query = "insert into turn values(?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+        String query = "insert into turn values(?)";
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ) {
             preparedStatement.setString(1, turn.getColor().name());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -36,9 +37,11 @@ public class TurnDao {
     }
 
     public Turn findTurn() {
-        try (Connection connection = getConnection()) {
-            String query = "select * from turn";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+        String query = "select * from turn";
+
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)
+        ) {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return TurnMapper.textToTurn(resultSet.getString("current_turn"));
@@ -50,9 +53,10 @@ public class TurnDao {
     }
 
     public void removeAll() {
-        try (Connection connection = getConnection()) {
-            String query = "delete from turn";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+        String query = "delete from turn";
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ) {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("저장된 턴을 삭제하지 못하였습니다.");
