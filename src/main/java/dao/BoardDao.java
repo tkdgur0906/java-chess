@@ -24,7 +24,7 @@ public class BoardDao {
     private static final int MIN_RANK = 1;
     private static final int MAX_RANK = 8;
 
-    public Connection getConnection() {
+    private static Connection getConnection() {
         try {
             return DriverManager.getConnection("jdbc:mysql://" + SERVER + "/" + DATABASE + OPTION, USERNAME, PASSWORD);
         } catch (SQLException e) {
@@ -32,13 +32,25 @@ public class BoardDao {
         }
     }
 
-    public void saveBoard(Board board) {
+    public static void saveBoard(Board board) {
+        removeAll();
         for (int file = MIN_FILE; file <= MAX_FILE; file++) {
             savePiecesByFile(board, file);
         }
     }
 
-    private void savePiecesByFile(Board board, int file) {
+    private static void removeAll() {
+        String query = "delete from pieces";
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)
+        ) {
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("저장된 게임을 삭제하지 못하였습니다.");
+        }
+    }
+
+    private static void savePiecesByFile(Board board, int file) {
         for (int rank = MIN_RANK; rank <= MAX_RANK; rank++) {
             Position position = Position.of(file, rank);
             Piece piece = board.findPieceAt(position);
@@ -46,7 +58,7 @@ public class BoardDao {
         }
     }
 
-    private void savePiece(Piece piece, Position position) {
+    private static void savePiece(Piece piece, Position position) {
         String query = "insert into pieces values(?,?,?)";
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)
@@ -60,7 +72,7 @@ public class BoardDao {
         }
     }
 
-    public Board findAll() {
+    public static Board findAll() {
         Map<Position, Piece> board = new HashMap<>();
         String query = "select * from pieces order by board_file and board_rank";
         try (Connection connection = getConnection();
@@ -80,17 +92,6 @@ public class BoardDao {
             return Board.replaceBoardWith(board);
         } catch (SQLException e) {
             throw new RuntimeException("저장된 게임을 찾지 못하였습니다.");
-        }
-    }
-
-    public void removeAll() {
-        String query = "delete from pieces";
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query)
-        ) {
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException("저장된 게임을 삭제하지 못하였습니다.");
         }
     }
 }

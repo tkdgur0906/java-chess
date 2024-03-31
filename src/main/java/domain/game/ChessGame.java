@@ -1,7 +1,5 @@
 package domain.game;
 
-import dao.BoardDao;
-import dao.TurnDao;
 import domain.board.Board;
 import domain.board.Position;
 import domain.piece.Piece;
@@ -43,38 +41,6 @@ public class ChessGame {
         turn = makeInitialTurn();
     }
 
-    public void save() {
-        saveBoard();
-        saveTurn();
-    }
-
-    private void saveBoard() {
-        BoardDao boardDao = new BoardDao();
-        boardDao.removeAll();
-        boardDao.saveBoard(board);
-    }
-
-    private void saveTurn() {
-        TurnDao turnDao = new TurnDao();
-        turnDao.removeAll();
-        turnDao.saveTurn(turn);
-    }
-
-    public void load() {
-        loadBoard();
-        loadTurn();
-    }
-
-    private void loadBoard() {
-        BoardDao boardDao = new BoardDao();
-        board = boardDao.findAll();
-    }
-
-    private void loadTurn() {
-        TurnDao turnDao = new TurnDao();
-        turn = turnDao.findTurn();
-    }
-
     public void end() {
         turn = turn.end();
     }
@@ -109,7 +75,19 @@ public class ChessGame {
         return turn.isEnd();
     }
 
+    public void loadBoard(Board board) {
+        this.board = board;
+    }
+
+    public void loadTurn(Turn turn) {
+        this.turn = turn;
+    }
+
     public Board getBoard() {
         return board;
+    }
+
+    public Turn getTurn() {
+        return turn;
     }
 }

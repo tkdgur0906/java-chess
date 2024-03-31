@@ -1,5 +1,7 @@
 package command;
 
+import dao.BoardDao;
+import dao.TurnDao;
 import domain.game.ChessGame;
 
 import static view.OutputView.printSaveMessage;
@@ -24,7 +26,8 @@ public class Save implements Command {
 
     @Override
     public void process(ChessGame chessGame) {
-        chessGame.save();
+        BoardDao.saveBoard(chessGame.getBoard());
+        TurnDao.saveTurn(chessGame.getTurn());
         printSaveMessage();
     }
 }

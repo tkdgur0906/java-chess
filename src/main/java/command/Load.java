@@ -1,5 +1,7 @@
 package command;
 
+import dao.BoardDao;
+import dao.TurnDao;
 import domain.game.ChessGame;
 
 import static view.OutputView.printLoadMessage;
@@ -24,7 +26,8 @@ public class Load implements Command {
 
     @Override
     public void process(ChessGame chessGame) {
-        chessGame.load();
+        chessGame.loadBoard(BoardDao.findAll());
+        chessGame.loadTurn(TurnDao.findTurn());
         printLoadMessage();
     }
 }

@@ -16,7 +16,7 @@ public class TurnDao {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "root";
 
-    public Connection getConnection() {
+    private static Connection getConnection() {
         try {
             return DriverManager.getConnection("jdbc:mysql://" + SERVER + "/" + DATABASE + OPTION, USERNAME, PASSWORD);
         } catch (SQLException e) {
@@ -24,7 +24,8 @@ public class TurnDao {
         }
     }
 
-    public void saveTurn(Turn turn) {
+    public static void saveTurn(Turn turn) {
+        removeAll();
         String query = "insert into turn values(?)";
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)
@@ -36,9 +37,19 @@ public class TurnDao {
         }
     }
 
-    public Turn findTurn() {
-        String query = "select * from turn";
+    private static void removeAll() {
+        String query = "delete from turn";
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)
+        ) {
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("저장된 턴을 삭제하지 못하였습니다.");
+        }
+    }
 
+    public static Turn findTurn() {
+        String query = "select * from turn";
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)
         ) {
@@ -50,16 +61,5 @@ public class TurnDao {
             throw new RuntimeException("저장된 턴을 찾지 못하였습니다.");
         }
         return null;
-    }
-
-    public void removeAll() {
-        String query = "delete from turn";
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query)
-        ) {
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException("저장된 턴을 삭제하지 못하였습니다.");
-        }
     }
 }
