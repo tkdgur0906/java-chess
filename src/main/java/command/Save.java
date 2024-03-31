@@ -2,6 +2,8 @@ package command;
 
 import domain.game.ChessGame;
 
+import static view.OutputView.printSaveMessage;
+
 public class Save implements Command {
 
     private static final String SAVE_COMMAND = "save";
@@ -23,5 +25,6 @@ public class Save implements Command {
     @Override
     public void process(ChessGame chessGame) {
         chessGame.save();
+        printSaveMessage();
     }
 }

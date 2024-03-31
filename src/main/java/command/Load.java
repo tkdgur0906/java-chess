@@ -2,6 +2,8 @@ package command;
 
 import domain.game.ChessGame;
 
+import static view.OutputView.printLoadMessage;
+
 public class Load implements Command {
 
     private static final String LOAD_COMMAND = "load";
@@ -23,5 +25,6 @@ public class Load implements Command {
     @Override
     public void process(ChessGame chessGame) {
         chessGame.load();
+        printLoadMessage();
     }
 }

@@ -2,6 +2,9 @@ package command;
 
 import domain.game.ChessGame;
 
+import static view.OutputView.printScore;
+import static view.OutputView.printWinner;
+
 public class Status implements Command {
 
     private static final String STATUS_COMMAND = "status";
@@ -22,5 +25,7 @@ public class Status implements Command {
 
     @Override
     public void process(ChessGame chessGame) {
+        printScore(chessGame.calculateBlackScore(), chessGame.calculateWhiteScore());
+        printWinner(chessGame.findWinner());
     }
 }
