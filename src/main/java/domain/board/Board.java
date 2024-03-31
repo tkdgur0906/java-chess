@@ -13,6 +13,8 @@ public class Board {
     private static final double PAWN_PENALTY = 0.5;
     private static final int MIN_RANK = 1;
     private static final int MAX_RANK = 8;
+    private static final int MIN_FILE = 1;
+    private static final int MAX_FILE = 8;
 
     private final Map<Position, Piece> board;
 
@@ -169,7 +171,7 @@ public class Board {
 
     private double calculateWhitePawnPenaltyScore() {
         double penalty = 0;
-        for (int file = 1; file <= 8; file++) {
+        for (int file = MIN_FILE; file <= MAX_FILE; file++) {
             penalty += calculateWhitePawnPenaltyScoreByFile(file);
         }
         return penalty;
@@ -208,7 +210,7 @@ public class Board {
 
     private double calculateBlackPawnPenaltyScore() {
         double penalty = 0;
-        for (int file = 1; file <= 8; file++) {
+        for (int file = MIN_FILE; file <= MAX_FILE; file++) {
             penalty += calculateBlackPawnPenaltyScoreByFile(file);
         }
         return penalty;

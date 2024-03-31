@@ -13,6 +13,10 @@ public class OutputView {
     private static final String SAVE_COMMAND = "save";
     private static final String LOAD_COMMAND = "load";
     private static final String NEW_LINE = System.lineSeparator();
+    private static final int MIN_RANK = 1;
+    private static final int MAX_RANK = 8;
+    private static final int MIN_FILE = 1;
+    private static final int MAX_FILE = 8;
 
     public void printStartMessage() {
         System.out.println("> 체스 게임을 시작합니다." + NEW_LINE +
@@ -24,14 +28,14 @@ public class OutputView {
     }
 
     public void printBoard(Board board) {
-        for (int rank = 8; rank >= 1; rank--) {
+        for (int rank = MAX_RANK; rank >= MIN_RANK; rank--) {
             printOneRank(board, rank);
         }
         System.out.println();
     }
 
     private void printOneRank(Board board, int rank) {
-        for (int file = 1; file <= 8; file++) {
+        for (int file = MIN_FILE; file <= MAX_FILE; file++) {
             Piece piece = board.findPieceAt(Position.of(file, rank));
             System.out.print(piece.asString());
         }
