@@ -12,20 +12,22 @@ public class OutputView {
     private static final String MOVE_COMMAND = "move";
     private static final String SAVE_COMMAND = "save";
     private static final String LOAD_COMMAND = "load";
-    private static final String NEW_LINE = System.lineSeparator();
     private static final int MIN_RANK = 1;
     private static final int MAX_RANK = 8;
     private static final int MIN_FILE = 1;
     private static final int MAX_FILE = 8;
 
     public static void printStartMessage() {
-        System.out.println("> 체스 게임을 시작합니다." + NEW_LINE +
-                "> 게임 시작 : " + START_COMMAND + NEW_LINE +
-                "> 게임 종료 : " + END_COMMAND + NEW_LINE +
-                "> 게임 이동 : " + MOVE_COMMAND + " source위치 target위치 - 예. " + MOVE_COMMAND + " b2 b3" + NEW_LINE +
-                "> 게임 저장 : " + SAVE_COMMAND + NEW_LINE +
-                "> 게임 불러오기 : " + LOAD_COMMAND + NEW_LINE);
+        System.out.println("""
+                > 체스 게임을 시작합니다.
+                > 게임 시작 : %s
+                > 게임 종료 : %s
+                > 게임 이동 : %s source위치 target위치 - 예. %s b2 b3
+                > 게임 저장 : %s
+                > 게임 불러오기 : %s
+                """.formatted(START_COMMAND, END_COMMAND, MOVE_COMMAND, MOVE_COMMAND, SAVE_COMMAND, LOAD_COMMAND));
     }
+
 
     public static void printBoard(Board board) {
         for (int rank = MAX_RANK; rank >= MIN_RANK; rank--) {
@@ -43,8 +45,10 @@ public class OutputView {
     }
 
     public static void printScore(double blackScore, double whiteScore) {
-        System.out.println("> 검은색 점수 : " + blackScore + NEW_LINE +
-                "> 흰색 점수 : " + whiteScore + NEW_LINE);
+        System.out.println("""
+                > 검은색 점수 : %d점
+                > 흰색 점수: %d점
+                """.formatted((int) blackScore, (int) whiteScore));
     }
 
     public static void printWinner(WinStatus winStatus) {
