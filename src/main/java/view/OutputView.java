@@ -18,7 +18,7 @@ public class OutputView {
     private static final int MIN_FILE = 1;
     private static final int MAX_FILE = 8;
 
-    public void printStartMessage() {
+    public static void printStartMessage() {
         System.out.println("> 체스 게임을 시작합니다." + NEW_LINE +
                 "> 게임 시작 : " + START_COMMAND + NEW_LINE +
                 "> 게임 종료 : " + END_COMMAND + NEW_LINE +
@@ -27,14 +27,14 @@ public class OutputView {
                 "> 게임 불러오기 : " + LOAD_COMMAND + NEW_LINE);
     }
 
-    public void printBoard(Board board) {
+    public static void printBoard(Board board) {
         for (int rank = MAX_RANK; rank >= MIN_RANK; rank--) {
             printOneRank(board, rank);
         }
         System.out.println();
     }
 
-    private void printOneRank(Board board, int rank) {
+    private static void printOneRank(Board board, int rank) {
         for (int file = MIN_FILE; file <= MAX_FILE; file++) {
             Piece piece = board.findPieceAt(Position.of(file, rank));
             System.out.print(piece.asString());
@@ -42,12 +42,12 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printScore(double blackScore, double whiteScore) {
+    public static void printScore(double blackScore, double whiteScore) {
         System.out.println("> 검은색 점수 : " + blackScore + NEW_LINE +
                 "> 흰색 점수 : " + whiteScore + NEW_LINE);
     }
 
-    public void printWinner(WinStatus winStatus) {
+    public static void printWinner(WinStatus winStatus) {
         if (winStatus == WinStatus.BLACK) {
             System.out.println("검은색이 승리했습니다!");
             return;
@@ -59,15 +59,15 @@ public class OutputView {
         System.out.println("검은색과 흰색이 동점입니다.");
     }
 
-    public void printSaveMessage() {
+    public static void printSaveMessage() {
         System.out.println("게임이 저장되었습니다.");
     }
 
-    public void printLoadMessage() {
+    public static void printLoadMessage() {
         System.out.println("저장된 게임을 불러왔습니다.");
     }
 
-    public void printErrorMessage(String errorMessage) {
+    public static void printErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
     }
 }

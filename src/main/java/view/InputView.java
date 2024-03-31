@@ -14,9 +14,9 @@ import java.util.function.Function;
 
 public class InputView {
 
-    private final Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
-    public Command readCommand() {
+    public static Command readCommand() {
         return CommandMapper.mapToCommand(scanner.nextLine());
     }
 
