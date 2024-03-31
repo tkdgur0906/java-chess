@@ -6,15 +6,12 @@ public class End implements Command {
 
     private static final String END_COMMAND = "end";
 
-    private final String command;
-
-    private End(String command) {
-        this.command = command;
+    private End() {
     }
 
     public static End from(String command) {
         validate(command);
-        return new End(command);
+        return new End();
     }
 
     private static void validate(String command) {

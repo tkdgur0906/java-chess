@@ -6,15 +6,12 @@ public class Start implements Command {
 
     private static final String START_COMMAND = "start";
 
-    private final String command;
-
-    public Start(String command) {
-        this.command = command;
+    private Start() {
     }
 
     public static Start from(String command) {
         validate(command);
-        return new Start(command);
+        return new Start();
     }
 
     private static void validate(String command) {

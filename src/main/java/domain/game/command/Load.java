@@ -6,15 +6,12 @@ public class Load implements Command {
 
     private static final String LOAD_COMMAND = "load";
 
-    private final String command;
-
-    private Load(String command) {
-        this.command = command;
+    private Load() {
     }
 
     public static Load from(String command) {
         validate(command);
-        return new Load(command);
+        return new Load();
     }
 
     private static void validate(String command) {

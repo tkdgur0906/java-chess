@@ -6,15 +6,12 @@ public class Save implements Command {
 
     private static final String SAVE_COMMAND = "save";
 
-    private final String command;
-
-    private Save(String command) {
-        this.command = command;
+    private Save() {
     }
 
     public static Save from(String command) {
         validate(command);
-        return new Save(command);
+        return new Save();
     }
 
     private static void validate(String command) {

@@ -6,15 +6,12 @@ public class Status implements Command {
 
     private static final String STATUS_COMMAND = "status";
 
-    private final String command;
-
-    public Status(String command) {
-        this.command = command;
+    private Status() {
     }
 
     public static Status from(String command) {
         validate(command);
-        return new Status(command);
+        return new Status();
     }
 
     private static void validate(String command) {
