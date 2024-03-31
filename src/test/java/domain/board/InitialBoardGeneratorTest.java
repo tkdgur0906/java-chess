@@ -1,6 +1,12 @@
 package domain.board;
 
-import domain.piece.*;
+import domain.piece.Bishop;
+import domain.piece.Empty;
+import domain.piece.King;
+import domain.piece.Knight;
+import domain.piece.Pawn;
+import domain.piece.Queen;
+import domain.piece.Rook;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
