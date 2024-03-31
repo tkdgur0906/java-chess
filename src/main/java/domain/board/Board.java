@@ -183,7 +183,7 @@ public class Board {
             Piece piece = board.get(Position.of(file, rank));
             pawnCount = increasePawnCountIfIsWhitePawn(piece, pawnCount);
         }
-        if (notExistPawn(pawnCount)) {
+        if (pawnCount == 0) {
             return 0;
         }
         return (pawnCount - 1) * PAWN_PENALTY;
@@ -222,7 +222,7 @@ public class Board {
             Piece piece = board.get(Position.of(file, rank));
             pawnCount = increasePawnCountIfIsBlackPawn(piece, pawnCount);
         }
-        if (notExistPawn(pawnCount)) {
+        if (pawnCount == 0) {
             return 0;
         }
         return (pawnCount - 1) * PAWN_PENALTY;
@@ -233,9 +233,5 @@ public class Board {
             pawnCount++;
         }
         return pawnCount;
-    }
-
-    private boolean notExistPawn(int pawnCount) {
-        return pawnCount == 0;
     }
 }
