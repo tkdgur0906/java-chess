@@ -66,4 +66,8 @@ public class OutputView {
     public void printLoadMessage() {
         System.out.println("저장된 게임을 불러왔습니다.");
     }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }

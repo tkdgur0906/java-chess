@@ -30,7 +30,7 @@ public class ChessApplication {
             handleCommands(command);
             outputView.printBoard(chessGame.getBoard());
         } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
         }
     }
 
