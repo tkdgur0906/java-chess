@@ -3,12 +3,11 @@ package command;
 import dao.BoardDao;
 import dao.TurnDao;
 import domain.game.ChessGame;
+import view.CommandMapper;
 
 import static view.OutputView.printLoadMessage;
 
 public class Load implements Command {
-
-    private static final String LOAD_COMMAND = "load";
 
     private Load() {
     }
@@ -19,7 +18,7 @@ public class Load implements Command {
     }
 
     private static void validate(String command) {
-        if (!LOAD_COMMAND.equals(command)) {
+        if (!CommandMapper.LOAD.commandText().equals(command)) {
             throw new IllegalArgumentException("올바른 명령어를 입력해 주세요.");
         }
     }

@@ -1,13 +1,12 @@
 package command;
 
 import domain.game.ChessGame;
+import view.CommandMapper;
 
 import static view.OutputView.printScore;
 import static view.OutputView.printWinner;
 
 public class Status implements Command {
-
-    private static final String STATUS_COMMAND = "status";
 
     private Status() {
     }
@@ -18,7 +17,7 @@ public class Status implements Command {
     }
 
     private static void validate(String command) {
-        if (!STATUS_COMMAND.equals(command)) {
+        if (!CommandMapper.STATUS.commandText().equals(command)) {
             throw new IllegalArgumentException("올바른 명령어를 입력해 주세요.");
         }
     }

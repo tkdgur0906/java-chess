@@ -7,11 +7,6 @@ import domain.piece.Piece;
 
 public class OutputView {
 
-    private static final String START_COMMAND = "start";
-    private static final String END_COMMAND = "end";
-    private static final String MOVE_COMMAND = "move";
-    private static final String SAVE_COMMAND = "save";
-    private static final String LOAD_COMMAND = "load";
     private static final int MIN_RANK = 1;
     private static final int MAX_RANK = 8;
     private static final int MIN_FILE = 1;
@@ -25,7 +20,13 @@ public class OutputView {
                 > 게임 이동 : %s source위치 target위치 - 예. %s b2 b3
                 > 게임 저장 : %s
                 > 게임 불러오기 : %s
-                """.formatted(START_COMMAND, END_COMMAND, MOVE_COMMAND, MOVE_COMMAND, SAVE_COMMAND, LOAD_COMMAND));
+                """.formatted(CommandMapper.START.commandText(),
+                CommandMapper.END.commandText(),
+                CommandMapper.MOVE.commandText(),
+                CommandMapper.MOVE.commandText(),
+                CommandMapper.SAVE.commandText(),
+                CommandMapper.LOAD.commandText()
+        ));
     }
 
 
