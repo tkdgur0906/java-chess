@@ -18,11 +18,10 @@ public class ChessGame {
         this.turn = PRE_START;
     }
 
-    public Board startTurn(Position source, Position target) {
+    public void startTurn(Position source, Position target) {
         Piece piece = board.findPieceAt(target);
-        Board movedBoard = board.move(source, target, turn);
+        board.move(source, target, turn);
         changeTurn(piece);
-        return movedBoard;
     }
 
     private void changeTurn(Piece piece) {
