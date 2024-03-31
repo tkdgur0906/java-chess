@@ -1,10 +1,10 @@
+import command.Command;
+import command.Load;
+import command.Save;
+import command.Status;
 import domain.board.Board;
 import domain.board.InitialBoardGenerator;
 import domain.game.ChessGame;
-import domain.game.command.Command;
-import domain.game.command.Load;
-import domain.game.command.Save;
-import domain.game.command.Status;
 import view.InputView;
 import view.OutputView;
 

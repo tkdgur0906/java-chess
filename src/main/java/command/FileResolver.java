@@ -1,4 +1,4 @@
-package domain.game.command;
+package command;
 
 import java.util.Arrays;
 

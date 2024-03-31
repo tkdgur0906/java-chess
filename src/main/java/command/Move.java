@@ -1,4 +1,4 @@
-package domain.game.command;
+package command;
 
 import domain.board.Position;
 import domain.game.ChessGame;

@@ -1,12 +1,12 @@
 package view;
 
-import domain.game.command.Command;
-import domain.game.command.End;
-import domain.game.command.Load;
-import domain.game.command.Move;
-import domain.game.command.Save;
-import domain.game.command.Start;
-import domain.game.command.Status;
+import command.Command;
+import command.End;
+import command.Load;
+import command.Move;
+import command.Save;
+import command.Start;
+import command.Status;
 
 import java.util.Arrays;
 import java.util.Scanner;
