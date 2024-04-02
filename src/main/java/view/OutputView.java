@@ -13,20 +13,20 @@ public class OutputView {
     private static final int MAX_FILE = 8;
 
     public static void printStartMessage() {
-        System.out.println("""
-                > 체스 게임을 시작합니다.
-                > 게임 시작 : %s
-                > 게임 종료 : %s
-                > 게임 이동 : %s source위치 target위치 - 예. %s b2 b3
-                > 게임 저장 : %s
-                > 게임 불러오기 : %s
-                """.formatted(CommandMapper.START.commandText(),
+        System.out.printf("""
+                        > 체스 게임을 시작합니다.
+                        > 게임 시작 : %s
+                        > 게임 종료 : %s
+                        > 게임 이동 : %s source위치 target위치 - 예. %s b2 b3
+                        > 게임 저장 : %s
+                        > 게임 불러오기 : %s
+                        %n""", CommandMapper.START.commandText(),
                 CommandMapper.END.commandText(),
                 CommandMapper.MOVE.commandText(),
                 CommandMapper.MOVE.commandText(),
                 CommandMapper.SAVE.commandText(),
                 CommandMapper.LOAD.commandText()
-        ));
+        );
     }
 
 
@@ -46,10 +46,10 @@ public class OutputView {
     }
 
     public static void printScore(double blackScore, double whiteScore) {
-        System.out.println("""
+        System.out.printf("""
                 > 검은색 점수 : %d점
                 > 흰색 점수: %d점
-                """.formatted((int) blackScore, (int) whiteScore));
+                %n""", (int) blackScore, (int) whiteScore);
     }
 
     public static void printWinner(WinStatus winStatus) {
